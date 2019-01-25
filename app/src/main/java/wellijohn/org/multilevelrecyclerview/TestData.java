@@ -13,68 +13,77 @@ import wellijohn.org.treerecyclerview.vo.TreeItem;
  * @desc:
  */
 public class TestData {
-    public static List<Person> getTestData() {
-        List<Person> list = new ArrayList<Person>();
+
+    public static ArrayList<FirstDataBean> getFirstData() {
+        ArrayList<FirstDataBean> firstDataBeans = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            FirstDataBean firstDataBean = new FirstDataBean();
+            FirstDataBean.FirstData leftData = new FirstDataBean.FirstData();
+            leftData.id = i + "left";
+            leftData.text = "业务/能力问题";
+            leftData.isOpen = false;
+            firstDataBean.leftData = leftData;
+
+            FirstDataBean.FirstData rightData = new FirstDataBean.FirstData();
+            rightData.id = i + "right";
+            rightData.text = "服务/态度问题";
+            rightData.isOpen = false;
+            firstDataBean.rightData = rightData;
+
+            firstDataBeans.add(firstDataBean);
+        }
+        return firstDataBeans;
+    }
+
+    public static List<SecondData> getTestData() {
+        List<SecondData> list = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            Person person = new Person();
-            list.add(person);
+            SecondData secondData = new SecondData();
+            secondData.text = "客服提供错误解决方案" + i;
+            secondData.id = "二级数据" + i;
+            list.add(secondData);
         }
         return list;
     }
 
-    static class Person extends TreeItem {
-        private boolean isOpean = true;
-        List<Person1> list = new ArrayList<Person1>();
+    /**
+     * 第二级：
+     */
+    static class SecondData extends TreeItem {
+        List<ThirdData> list = new ArrayList<>();
+        public String id;
+        public String text;
 
-        public Person() {
-            Person1 person1 = new Person1();
-            list.add(person1);
-            person1.setOpen(false);
-            Person1 person2 = new Person1();
-            person2.setOpen(false);
-            list.add(person2);
-        }
-
-        public int getLevel() {
-            return 0;
-        }
-
-        public List getChilds() {
-
-            return list;
-        }
-
-    }
-
-    static class Person1 extends TreeItem {
-        List<Person2> list = new ArrayList<Person2>();
-
-
-        public Person1() {
-            Person2 person1 = new Person2();
-            list.add(person1);
-            Person2 person2 = new Person2();
-            list.add(person2);
+        public SecondData() {
+            ThirdData thirdData1 = new ThirdData();
+            thirdData1.text = "电话客服业务能力差1";
+            thirdData1.id = "三级数据id";
+            list.add(thirdData1);
+            ThirdData thirdData2 = new ThirdData();
+            thirdData2.text = "电话客服业务能力差2";
+            thirdData2.id = "三级数据id";
+            list.add(thirdData2);
         }
 
         public int getLevel() {
             return 1;
         }
 
-
         public List getChilds() {
-
             return list;
         }
-
     }
 
-    static class Person2 extends TreeItem {
+    /**
+     * 第三级：
+     */
+    static class ThirdData extends TreeItem {
+        public String id;
+        public String text;
 
         public int getLevel() {
             return 2;
         }
-
 
         public List<Tree> getChilds() {
             return null;

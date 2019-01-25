@@ -2,6 +2,7 @@ package wellijohn.org.multilevelrecyclerview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -14,10 +15,12 @@ public class DemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        mRv.setLayoutManager(new LinearLayoutManager(this));
-        DemoRVAdapter demoRVAdapter = new DemoRVAdapter();
+
+        mRv.setLayoutManager(new GridLayoutManager(this, 1));
+        mRv.setAdapter(new MyFirstAdapter(this));
+        /*DemoRVAdapter demoRVAdapter = new DemoRVAdapter();
         mRv.setAdapter(demoRVAdapter);
-        demoRVAdapter.setDatas(TestData.getTestData());
+        demoRVAdapter.setDatas(TestData.getTestData());*/
 
     }
 

@@ -2,6 +2,7 @@ package wellijohn.org.multilevelrecyclerview.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import wellijohn.org.multilevelrecyclerview.R;
@@ -15,8 +16,7 @@ import wellijohn.org.multilevelrecyclerview.R;
  */
 public class DiscountThirdVH extends RecyclerView.ViewHolder {
     public TextView tvName;
-    public TextView tvZhe;
-    public TextView tvNum;
+    public RadioButton rb;
 
     public DiscountThirdVH(View view) {
         super(view);
@@ -24,8 +24,7 @@ public class DiscountThirdVH extends RecyclerView.ViewHolder {
     }
 
     private void initView() {
-        tvName = itemView.findViewById(R.id.tv_name);
-        tvZhe = itemView.findViewById(R.id.tv_zhe);
-        tvNum = itemView.findViewById(R.id.tv_num);
+        tvName = itemView.findViewById(R.id.tv);
+        rb = itemView.findViewById(R.id.rb);
     }
 }

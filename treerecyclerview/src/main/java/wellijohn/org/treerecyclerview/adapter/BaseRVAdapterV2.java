@@ -18,7 +18,7 @@ public abstract class BaseRVAdapterV2<T extends RecyclerView.ViewHolder, M> exte
 
     private OnRVDataChangeListener onRVDataChangeListener;
 
-    List<M> mDatas = new ArrayList<>();
+    public List<M> mDatas = new ArrayList<>();
 
 
     @Override
