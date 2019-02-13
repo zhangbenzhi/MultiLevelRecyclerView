@@ -1,94 +1,75 @@
 package wellijohn.org.multilevelrecyclerview;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import wellijohn.org.treerecyclerview.vo.Tree;
 import wellijohn.org.treerecyclerview.vo.TreeItem;
 
 /**
- * @author: WelliJohn
- * @time: 2018/8/17-16:37
- * @email: wellijohn1991@gmail.com
- * @desc:
+ * 模拟数据
  */
 public class TestData {
 
-    public static ArrayList<FirstDataBean> getFirstData() {
-        ArrayList<FirstDataBean> firstDataBeans = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            FirstDataBean firstDataBean = new FirstDataBean();
-            FirstDataBean.FirstData leftData = new FirstDataBean.FirstData();
-            leftData.id = i + "left";
-            leftData.text = "业务/能力问题";
-            leftData.isOpen = false;
-            firstDataBean.leftData = leftData;
-
-            FirstDataBean.FirstData rightData = new FirstDataBean.FirstData();
-            rightData.id = i + "right";
-            rightData.text = "服务/态度问题";
-            rightData.isOpen = false;
-            firstDataBean.rightData = rightData;
-
-            firstDataBeans.add(firstDataBean);
+    public static ArrayList<TreeItem> getAllData() {
+        ArrayList<TreeItem> treeItems = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            TreeItem left = new TreeItem();
+            left.name = "左边数据投诉客服投诉保洁";
+            left.id = String.valueOf(i);
+            ArrayList<TreeItem> rightFirsts = new ArrayList<>();
+            for (int j = 0; j < 4; j++) {
+                TreeItem rightFirst = new TreeItem();
+                rightFirst.name = "右边第一级服务态度等问题急需解决";
+                rightFirst.level = 1;
+                rightFirst.id = String.valueOf(i) + j;
+                ArrayList<TreeItem> rightSeconds = new ArrayList<>();
+                for (int k = 0; k < 3; k++) {
+                    TreeItem rightSecond = new TreeItem();
+                    rightSecond.name = "右边第二级业务能力差";
+                    rightSecond.level = 2;
+                    rightSecond.id = String.valueOf(i) + j + k;
+                    ArrayList<TreeItem> rightThirds = new ArrayList<>();
+                    for (int m = 0; m < 5; m++) {
+                        TreeItem rightThird = new TreeItem();
+                        rightThird.name = "右边第三级电话业务能力差";
+                        rightThird.level = 3;
+                        rightThird.id = String.valueOf(i) + j + k + m;
+                        ArrayList<TreeItem> rightFourths = new ArrayList<>();
+                        for (int n = 0; n < 4; n++) {
+                            TreeItem rightFourth = new TreeItem();
+                            rightFourth.name = "右边第四级客服业务能力差";
+                            rightFourth.level = 4;
+                            rightFourth.id = String.valueOf(i) + j + k + m + n;
+                            rightFourths.add(rightFourth);
+                        }
+                        //造出第三级没有下一级的情况
+                        if (m != 0) {
+                            rightThird.data = rightFourths;
+                        }
+                        rightThirds.add(rightThird);
+                    }
+                    //造出第二级没有下一级的情况
+                    if (k != 0) {
+                        rightSecond.data = rightThirds;
+                    }
+                    rightSeconds.add(rightSecond);
+                }
+                //造出第一级没有下一级的情况
+                if (j != 0) {
+                    rightFirst.data = rightSeconds;
+                }
+                rightFirsts.add(rightFirst);
+            }
+            //造成左边没有右边第一级的情况
+            if (i != 0) {
+                left.data = rightFirsts;
+            }
+            treeItems.add(left);
         }
-        return firstDataBeans;
+        return treeItems;
     }
 
-    public static List<SecondData> getTestData() {
-        List<SecondData> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            SecondData secondData = new SecondData();
-            secondData.text = "客服提供错误解决方案" + i;
-            secondData.id = "二级数据" + i;
-            list.add(secondData);
-        }
-        return list;
-    }
-
-    /**
-     * 第二级：
-     */
-    static class SecondData extends TreeItem {
-        List<ThirdData> list = new ArrayList<>();
-        public String id;
-        public String text;
-
-        public SecondData() {
-            ThirdData thirdData1 = new ThirdData();
-            thirdData1.text = "电话客服业务能力差1";
-            thirdData1.id = "三级数据id";
-            list.add(thirdData1);
-            ThirdData thirdData2 = new ThirdData();
-            thirdData2.text = "电话客服业务能力差2";
-            thirdData2.id = "三级数据id";
-            list.add(thirdData2);
-        }
-
-        public int getLevel() {
-            return 1;
-        }
-
-        public List getChilds() {
-            return list;
-        }
-    }
-
-    /**
-     * 第三级：
-     */
-    static class ThirdData extends TreeItem {
-        public String id;
-        public String text;
-
-        public int getLevel() {
-            return 2;
-        }
-
-        public List<Tree> getChilds() {
-            return null;
-        }
-
+    public static ArrayList<TreeItem> getRightList(int position) {
+        return getAllData().get(position).data;
     }
 }
 

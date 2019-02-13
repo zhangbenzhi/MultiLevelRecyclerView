@@ -3,12 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
+        android:id="@+id/rvLeft"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/left_rl_bg"
         tools:context=".DemoActivity" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvRight"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@color/white"
+        android:padding="10dp"
+        tools:context=".DemoActivity" />
+
+    <Button
+        android:id="@+id/leftBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="2"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:visibility="gone" />
 
 </LinearLayout>

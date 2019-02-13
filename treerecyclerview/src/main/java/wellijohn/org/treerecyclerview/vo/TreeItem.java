@@ -1,24 +1,27 @@
 package wellijohn.org.treerecyclerview.vo;
 
-/**
- * @author: WelliJohn
- * @time: 2018/8/13-15:49
- * @email: wellijohn1991@gmail.com
- * @desc:
- */
-public abstract class TreeItem implements Tree {
-    private boolean isOpen;
+import java.util.ArrayList;
+import java.util.List;
 
-    public final boolean isOpen() {
-        return isOpen;
-    }
+public class TreeItem implements Tree {
+    public boolean isOpen;
+    public String name;
+    public String id;
+    public ArrayList<TreeItem> data;
+    public int level;
 
-    public final void setOpen(boolean open) {
-        isOpen = open;
+    @Override
+    public int getLevel() {
+        return level;
     }
 
     @Override
-    public final boolean isExpand() {
+    public List getChilds() {
+        return data;
+    }
+
+    @Override
+    public boolean isExpand() {
         return isOpen;
     }
 }

@@ -18,6 +18,7 @@ import wellijohn.org.multilevelrecyclerview.R;
 public class DiscountSecondVH extends RecyclerView.ViewHolder {
     public TextView tv;
     public Button btn;
+    public ImageView iv_arrow;
 
     public DiscountSecondVH(View view) {
         super(view);
@@ -27,5 +28,6 @@ public class DiscountSecondVH extends RecyclerView.ViewHolder {
     private void initView() {
         tv = itemView.findViewById(R.id.tv);
         btn = itemView.findViewById(R.id.btn);
+        iv_arrow=itemView.findViewById(R.id.iv_arrow);
     }
 }
